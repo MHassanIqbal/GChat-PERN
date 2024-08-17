@@ -30,8 +30,8 @@ model Conversation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  participitantIds String[]
-  participitants   User[]
+  participantIds String[]
+  participant    User[]
 
   messagesIds String[]
   messages    Message[]

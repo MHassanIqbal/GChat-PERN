@@ -15,5 +15,5 @@ app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
 
 app.listen(8000, () => {
-    console.log("Server is running on PORT 8000 ");
+    console.log("Server is running on PORT 8000 ")
 });
