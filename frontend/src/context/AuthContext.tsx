@@ -1,5 +1,5 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 type AuthUserType = {
     id: string
@@ -16,8 +16,8 @@ const AuthContext = createContext<{
 }>({
     authUser: null,
     setAuthUser: () => { },
-    isLoading: true
-})
+    isLoading: true,
+});
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuthContext = () => {

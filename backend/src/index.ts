@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 import authRoutes from './routes/authRoute.js'
 import messageRoutes from './routes/messageRoute.js'
 import dotenv from 'dotenv'
@@ -8,12 +8,14 @@ const app = express()
 
 dotenv.config()
 
+const PORT = process.env.PORT || 8000
+
 app.use(cookieParser()) //for parsing cookies
 app.use(express.json()) //for parsing express applicaion/json
 
-app.use("/api/auth", authRoutes)
-app.use("/api/message", messageRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/messages', messageRoutes)
 
-app.listen(8000, () => {
-    console.log("Server is running on PORT 8000 ")
+app.listen(PORT, () => {
+    console.log('Server is running on PORT ' + PORT)
 });
