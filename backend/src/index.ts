@@ -3,8 +3,7 @@ import authRoutes from './routes/authRoute.js'
 import messageRoutes from './routes/messageRoute.js'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
-
-const app = express()
+import { app, server } from './socket/socket.js'
 
 dotenv.config()
 
@@ -16,6 +15,6 @@ app.use(express.json()) //for parsing express applicaion/json
 app.use('/api/auth', authRoutes)
 app.use('/api/messages', messageRoutes)
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log('Server is running on PORT ' + PORT)
 });

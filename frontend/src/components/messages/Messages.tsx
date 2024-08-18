@@ -1,11 +1,17 @@
-import UseGetMessages from "../../hooks/UseGetMessages";
-import MessageSkeleton from "../skeletons/MessageSkeleton";
-import Message from "./Message";
+import useChatScroll from "../../hooks/UseChatScroll";
+import UseGetMessages from "../../hooks/UseGetMessages"
+import useListenMessages from "../../hooks/UseListenMessages";
+import MessageSkeleton from "../skeletons/MessageSkeleton"
+import Message from "./Message"
 
 const Messages = () => {
     const { loading, messages } = UseGetMessages()
+    useListenMessages()
+
+    const ref = useChatScroll(messages) as React.MutableRefObject<HTMLDivElement>
+
     return (
-        <div className='px-4 flex-1 overflow-auto'>
+        <div className='px-4 flex-1 overflow-auto' ref={ref}>
             {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
 
             {!loading && messages.map((message) => <Message key={message.id} message={message} />)}
@@ -14,6 +20,6 @@ const Messages = () => {
                 <p className='text-center text-white'>Send a message to start the conversation</p>
             )}
         </div>
-    );
-};
-export default Messages;
+    )
+}
+export default Messages

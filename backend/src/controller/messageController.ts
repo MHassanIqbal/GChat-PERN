@@ -1,5 +1,6 @@
 import { request, Request, Response } from "express"
 import Prisma from "../database/prisma.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 export const sendMessage = async (request: Request, response: Response) => {
     try {
         const { message } = request.body
@@ -48,7 +49,11 @@ export const sendMessage = async (request: Request, response: Response) => {
             })
         }
 
-        // Socket io will go here
+        // Socket io
+        const receivedSocketId = getReceiverSocketId(receiverId)
+        if (receivedSocketId) {
+            io.to(receivedSocketId).emit('newMessage', newMessage)
+        }
 
         response.json(201).json(sendMessage)
     }
